@@ -16,6 +16,7 @@
 
       ./misc/nix-stuff.nix
       ./misc/razer.nix
+      ./misc/fonts.nix
 
       #./packages/audio.nix  ## TODO: fix later
     ];
