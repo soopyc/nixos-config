@@ -15,6 +15,7 @@
       ./misc/networking.nix
 
       ./misc/nix-stuff.nix
+      ./misc/razer.nix
 
       #./packages/audio.nix  ## TODO: fix later
     ];
@@ -72,8 +73,10 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sophie = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-
+    extraGroups = [ 
+      "wheel" # Enable ‘sudo’ for the user.
+      "plugdev"
+    ]; 
   };
 
   users.defaultUserShell = pkgs.zsh;
