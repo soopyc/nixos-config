@@ -1,14 +1,13 @@
-{ config, pkgs, ... }:
-  let 
-    unstable = import <nixpkgs-unstable> {};
-  in {
+{ config, pkgs, ... }: {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "sophie";
   home.homeDirectory = "/home/sophie";
 
   home.packages = [
+    pkgs.nss_latest
     pkgs.discord-canary
+    pkgs.spotify
     (import ~/nixos/home/pkgs/python.nix { inherit pkgs; })
   ];
 
@@ -27,5 +26,7 @@
 
   nixpkgs.overlays = [
     (import ~/nixos/overlays/discord-canary.nix)
+    (import ~/nixos/overlays/spotify.nix)
+    (import ~/nixos/overlays/nss.nix)  # this works but NOT FUCKING SPOTIFY
   ];
 }
