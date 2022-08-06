@@ -8,6 +8,8 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      #<home-manager/nixos>  # use standalone?
+
       ./overlays/t2linux-overlay/default.nix
       ./overlays/t2linux-overlay/system-config.nix
 
@@ -15,10 +17,11 @@
       ./misc/networking.nix
 
       ./misc/nix-stuff.nix
-      ./misc/razer.nix
+      ./misc/locales.nix
       ./misc/fonts.nix
 
-      #./packages/audio.nix  ## TODO: fix later
+      ./packages/razer.nix
+      ./packages/audio.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -80,6 +83,11 @@
     ]; 
   };
 
+  #home-manager.users.sophie = { ... }: {
+  #    imports = [ ./users/sophie.nix ];
+  #    home.stateVersion = "22.05";
+  #};
+
   users.defaultUserShell = pkgs.zsh;
 
   # List packages installed in system profile. To search, run:
@@ -91,8 +99,8 @@
     firefox
     breeze-plymouth
     vscode
-    discord-canary
   ];
+  environment.variables.EDITOR = "nvim";
   programs.zsh.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
