@@ -26,7 +26,7 @@
 
   nixpkgs.overlays = [
     (import ~/nixos/overlays/discord-canary.nix)
-    (import ~/nixos/overlays/spotify.nix)
+    #(import ~/nixos/overlays/spotify.nix)
     (import ~/nixos/overlays/nss.nix)  # this works but NOT FUCKING SPOTIFY
   ];
 }
