@@ -1,7 +1,10 @@
-{ pkgs, ... }: {
-    fonts.fonts = with pkgs; [
+{ pkgs, ... }: 
+  {
+    fonts.fonts = with pkgs;[
       noto-fonts
-      noto-fonts-cjk
+      #stable.noto-fonts-cjk
+      source-han-mono
+      source-han-sans
       noto-fonts-extra
       ipafont
       liberation_ttf

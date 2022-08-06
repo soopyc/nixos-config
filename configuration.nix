@@ -24,9 +24,14 @@
       ./packages/audio.nix
     ];
 
-  # Use the systemd-boot EFI boot loader.
-  #boot.loader.systemd-boot.enable = true;
-  #boot.loader.efi.canTouchEfiVariables = false;  ##PLEASE do NOT
+  #nixpkgs.overlays = [
+  #  (import ./overlays/fonts.nix)
+  #];
+
+  # Letting the t2linux overlay manage this pos.
+  ## Use the systemd-boot EFI boot loader.
+  ##boot.loader.systemd-boot.enable = true;
+  ##boot.loader.efi.canTouchEfiVariables = false;  ##PLEASE do NOT
 
 
   networking.hostName = "marisa"; # Define your hostname.
@@ -77,10 +82,10 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sophie = {
     isNormalUser = true;
-    extraGroups = [ 
+    extraGroups = [
       "wheel" # Enable ‘sudo’ for the user.
       "plugdev"
-    ]; 
+    ];
   };
 
   #home-manager.users.sophie = { ... }: {
