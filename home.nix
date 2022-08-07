@@ -1,15 +1,13 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+let
+  packages = import ~/nixos/home/packages.nix;
+in {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "sophie";
   home.homeDirectory = "/home/sophie";
 
-  home.packages = [
-    pkgs.nss_latest
-    pkgs.discord-canary
-    pkgs.spotify
-    (import ~/nixos/home/pkgs/python.nix { inherit pkgs; })
-  ];
+  home.packages = packages pkgs;
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
@@ -27,6 +25,6 @@
   nixpkgs.overlays = [
     (import ~/nixos/overlays/discord-canary.nix)
     #(import ~/nixos/overlays/spotify.nix)
-    (import ~/nixos/overlays/nss.nix)  # this works but NOT FUCKING SPOTIFY
+    (import ~/nixos/overlays/nss.nix)
   ];
 }
