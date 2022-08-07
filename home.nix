@@ -22,9 +22,17 @@ in {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  # Input Method
+  #i18n.inputMethod = {
+  #  enabled = "fcitx5";
+  #  fcitx5.addons = with pkgs; [
+  #    fcitx5-mozc
+  #    fcitx5-rime
+  #  ];
+  #};
+
   nixpkgs.overlays = [
     (import ~/nixos/overlays/discord-canary.nix)
-    #(import ~/nixos/overlays/spotify.nix)
     (import ~/nixos/overlays/nss.nix)
   ];
 }

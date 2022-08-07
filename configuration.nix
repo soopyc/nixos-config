@@ -88,6 +88,26 @@
     ];
   };
 
+  # mfw arch wiki: https://wiki.archlinux.org/title/Fcitx5#Integration
+  # thanks arch jp !: http://aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.com/#AAaAaaaAAAaAaaAAAaAaaAAAaaaaAAAaaAAaAAAaAaaAaAAAAaAaAAAAAAAaAAAAAaAaaAAAaAaAAAAaAaaAaAaAAAaAAaaaaAAAAaaAaAAaaaAAAAaAaaaAAaAAaaAAaAaaAAAaAAAaAAAaAaAAAAAaaaaAaAAAaAAaAaAaAAAaaaaaAaAAAAAAaAaaAAAaAAAaAAaaAaaAAaaAaAAAAAaaaaAaAAAaAAAaaaaAAaAaaaAAAaaaaaAaAAAAAaaaAAaAAaaaAAAAaAaaAAAAaAaaAAAAaaaaAAaAaAaAaaaAAaAaaAaAAaaaAaAaAAaaAAaAaaAaAaAAAaaaaAAaaAaaAaaAaAAaaaaaAaAAaAaaaAaaAaAAaaaAaAaAAaaAAaAaaAaAaAAAaaaaAAaaAAaAaaAaAAaaaaAaaAAaaAAaAaaAaAAaaaAaAaAAaaAAaAaaAaAaAAAaaaaAAaaAAaAaaAaAaAAAaaAaAAaAAAaAaaAaAAaaaAaAaAAaaAAaAaaAaAaAAAaaaaAAaaAAaAaaAaAaAAAaaaaAAaaAAaAaaAaAAaaaAaAaAAaaAAaAaaAaAaAAAaaaaAAaaAAaAaaAaAaAAAaaaaAAAaaaaAaaAaAAaaaAaAaAAaaAAaAaaAaAaAAAaaaaAAaaAAaAaaAaAAaaaaaAaAAaaaAaAaaAaAAaaaAaAaAAaaAAaAaaAaAaAAAaaaaAAaaAaaAaaAaAAaaaaAaAaaaAaaaAaaAaAAaaaAaAaAAaaAAaAaaAaAaAAAaaaaAAaaAAaAaaAaAaAAAaaaaAAaaAAaAaaAaAAaaaAaAaAAaaAAaAaaAaAaAAAaaaaAAaaAAaAaaAaAaAAAaaaaAAAaaAaAaaAaAAaaaAaAaAAaaAAaAaaAaAaAAAaaaaAAaaAAaAaaAaAAaaaaaAaAAaaAaaAaaAaAAaaaAaAaAAaaAAaAaaAaAaAAAaaaaAAaaAaaAaaAaAAaaaaAaaAAAaaaaAaaAaAAaaaAaAaAAaaAAaAaaAaAaAAAaaaaAAaaAAaAaaAaAAaaaaaAaAAaAaAaAaaAaAAaaaAaAaAAaaAAaAaaAaAaAAAaaaaAAaaAAaAaaAaAAaaaaAaAaaaaAAaAaaAaAAaaaAaAaAAaaAAaAaaAaAaAAAaaaaAAaaAAaAaaAaAAaaaaaAAaaaaAaaAaaAaAAaaaAaAaAAaaAAaAaaAaAaAAAaaaaAAaaaAaAaaAaAAaaaaaAAaaaAaAaAaaAaAAaaaAaAaAAaAAAaAaaAaAaAAAaaAaAAaaAaaAaaAaAAaaaaAaaAAaaaaaAaaAaAAaaaAaAaAAaAaAaAaaAaAAaaaaaAaAAaaAaaAaaAaAaAAAaaaaAAaaAAaAaaAaAAaaaAaAaAAaAaAaAaaAaAAaaaaaAaAAaAaaaAaaAaAaAAAaaaaAAAaaAaAaaAaAAaaaAaAaAAaAAaaAaaAaAaAAAaaAaAAaAaAaAaaAaAAaaaaAaaAAaaaaaAaaAaAAaaaAaAaAAaaAAaAaaAaAaAAAaaaaAAaaaAaAaaAaAAaaaaaAAaaaAaAaAaaAaAAaaaAaAaAAAaaaaAaaAaAAaaaaaAaAAAaaaaAaaAaAAaaaaaAAaaaAaaaAaaAaAAaaaAaAaAAaAaAaAaaAaAAaaaaaAAaaaAaAaAaaAaAaAAAaaAAaaaaaA
+  # Note to self: purge rime's bs files in ~/.l/s/fcitx5/rime/build
+  #               after changing any rime thing
+  environment.sessionVariables = rec {
+    GTK_IM_MODULE = "fcitx";
+    QT_IM_MODULE  = "fcitx";
+    XMODIFIERS    = "@im=fcitx";
+  };
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx5 = {
+      enableRimeData = true;
+      addons = with pkgs; [
+        fcitx5-mozc
+        fcitx5-rime
+      ];
+    };
+  };
+
   #home-manager.users.sophie = { ... }: {
   #    imports = [ ./users/sophie.nix ];
   #    home.stateVersion = "22.05";
@@ -125,7 +145,7 @@
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

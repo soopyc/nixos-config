@@ -15,6 +15,7 @@ pkgs: with pkgs; [
   zip  # OK.
   polkit
   psmisc
+  xsel
 
   # Libs
   nss_latest
@@ -25,6 +26,16 @@ pkgs: with pkgs; [
 
   # Remote
   mosh
+
+  # IME
+  ## do this in i18n.input
+  #fcitx5
+  #fcitx5-rime
+  #fcitx5-mozc
+  #rime-data
+  libsForQt5.fcitx5-qt
+  fcitx5-gtk
+  fcitx5-configtool
 
   # Editors
   neovim
